@@ -12,25 +12,25 @@ RUN Add-WindowsFeature Web-Server; \
 		-OutFile "C:\ServiceMonitor.exe"; \
 	Import-Module ServerManager -Force; \
 	Add-WindowsFeature NET-Framework-45-ASPNET; \
-    Add-WindowsFeature Web-Net-Ext45; \
-    Add-WindowsFeature Web-Asp-Net45; \
-    Add-WindowsFeature Web-ISAPI-Ext; \
-    Add-WindowsFeature Web-ISAPI-Filter; \
+	Add-WindowsFeature Web-Net-Ext45; \
+	Add-WindowsFeature Web-Asp-Net45; \
+	Add-WindowsFeature Web-ISAPI-Ext; \
+	Add-WindowsFeature Web-ISAPI-Filter; \
 	$env:chocolateyUseWindowsCompression='false'; \
-    [System.Net.ServicePointManager]::SecurityProtocol = 3072; \
+	[System.Net.ServicePointManager]::SecurityProtocol = 3072; \
 	Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1')); \
 	$env:Path += 'C:\ProgramData\chocolatey'; \
 	$env:Path = [System.Environment]::GetEnvironmentVariable('Path','Machine'); \
 	choco install chocolatey.server -y; \
 	$env:Path = [System.Environment]::GetEnvironmentVariable('Path','Machine'); \
-    Remove-Item -Path C:\tools\chocolatey.server\App_Data\Packages\Readme.txt; \	
+	Remove-Item -Path C:\tools\chocolatey.server\App_Data\Packages\Readme.txt; \	
 	New-WebAppPool -Name chocolatey.server; \
-    Set-ItemProperty "IIS:\AppPools\chocolatey.server" `\
+	Set-ItemProperty "IIS:\AppPools\chocolatey.server" `\
 		-Name "processModel.loadUserProfile" `\
 		-Value "True"; \
-    Import-Module IISAdministration; \
-    Import-Module WebAdministration; \
-    Remove-WebSite -Name 'Default Web Site'; \
+	Import-Module IISAdministration; \
+	Import-Module WebAdministration; \
+	Remove-WebSite -Name 'Default Web Site'; \
 	$print = (New-SelfSignedCertificate ` \
 		-Subject "localhost" `\
 		-DnsName "localhost","$env:ComputerName" `\
@@ -43,7 +43,7 @@ RUN Add-WindowsFeature Web-Server; \
 		-CertificateThumbPrint $print `\
 		-CertStoreLocation "Cert:\LocalMachine\My" `\
 		-Protocol https; \
-    Set-ItemProperty "IIS:\Sites\Chocolatey" ApplicationPool chocolatey.server;
+	Set-ItemProperty "IIS:\Sites\Chocolatey" ApplicationPool chocolatey.server;
 	
 	#embedded script to set apiKey from CHOCOLATEY_API environmental variable, if available, otherwise 'default'
 RUN	$script = 'c:\setApiKey.ps1'; \
