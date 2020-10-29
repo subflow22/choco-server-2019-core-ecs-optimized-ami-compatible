@@ -5,7 +5,7 @@ MAINTAINER Mike Reilly
 
 SHELL ["powershell", "-NoProfile -InputFormat None -ExecutionPolicy Bypass -Command"]
 
-RUN Add-WindowsFeature Web-Server; \
+RUN	Add-WindowsFeature Web-Server; \
 	Invoke-WebRequest `\
 		-UseBasicParsing `\
 		-Uri "https://dotnetbinaries.blob.core.windows.net/servicemonitor/2.0.1.10/ServiceMonitor.exe" `\
