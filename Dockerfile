@@ -6,7 +6,7 @@ MAINTAINER Mike Reilly
 SHELL ["powershell", "-NoProfile -InputFormat None -ExecutionPolicy Bypass -Command"]
 
 RUN Add-WindowsFeature Web-Server; \
-    Invoke-WebRequest `\
+	Invoke-WebRequest `\
 		-UseBasicParsing `\
 		-Uri "https://dotnetbinaries.blob.core.windows.net/servicemonitor/2.0.1.10/ServiceMonitor.exe" `\
 		-OutFile "C:\ServiceMonitor.exe"; \
@@ -44,7 +44,7 @@ RUN Add-WindowsFeature Web-Server; \
 		-CertStoreLocation "Cert:\LocalMachine\My" `\
 		-Protocol https; \
 	Set-ItemProperty "IIS:\Sites\Chocolatey" ApplicationPool chocolatey.server;
-	
+
 	#embedded script to set apiKey from CHOCOLATEY_API environmental variable, if available, otherwise 'default'
 RUN	$script = 'c:\setApiKey.ps1'; \
 	'$api = \"$env:CHOCOLATEY_API\"' | Out-File $script -Force; \
