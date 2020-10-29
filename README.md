@@ -1,3 +1,5 @@
+#
+
 Simple Chocolatey Server intended for ECS deployment or can be used locally as well.  Generates and installs a self-signed certificate for localhost which must be imported into the computer cert store to enable package push for local development.  OS version is compatible with the latest ECS-Optimized 2019 Server Core AMI provided by AWS as of 10/28/2020 - 10.0.17763.  Self-Signed cert does not interfere with SSL termination for an AWS ACM cert attached to an ALB.
 
 API key can be supplied via CHOCOLATEY_API custom environment variable.  This is to support integration with Secrets Manager or Parameter Store.  If null, API key is 'default'.  This is defined as apiKey in C:\tools\chocolatey.server\web.config.  The helper script is embedded in the Dockerfile.
