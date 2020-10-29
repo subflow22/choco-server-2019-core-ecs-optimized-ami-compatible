@@ -1,4 +1,4 @@
-#Simple Chocolatey Server, SSL-ready, compatible with ECS Optimized 2019 Core 10.0.17763 AMI
+# Simple Chocolatey Server, SSL-ready, compatible with ECS Optimized 2019 Core 10.0.17763 AMI
 
 Simple Chocolatey Server intended for ECS deployment or can be used locally as well.  Generates and installs a self-signed certificate for localhost which must be imported into the computer cert store to enable package push for local development.  OS version is compatible with the latest ECS-Optimized 2019 Server Core AMI provided by AWS as of 10/28/2020 - 10.0.17763.  Self-Signed cert does not interfere with SSL termination for an AWS ACM cert attached to an ALB.
 
